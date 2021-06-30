@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head th:insert="fragments/fragments :: header"><meta charset="UTF-8"></head>
+	
+	<body>
+		<nav th:insert="fragments/fragments :: navbar"></nav>
+	
+		<div class="container">
+			
+			<span th:text="*{pizza.name}">  </span>
+			
+		</div>
+	</body>
+</html>

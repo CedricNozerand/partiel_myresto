@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head th:insert="fragments/fragments :: header"><meta charset="UTF-8"></head>
+	
+	<body>
+		<nav th:insert="fragments/fragments :: navbar"></nav>
+	
+		<div class="container">
+		
+			<div th:if="${param.logout}">
+		    	<div class="alert alert-info">Vous avez été déconnecté</div>
+		    </div>
+		
+			<div th:if="${param.success}">
+				<div class="alert alert-success">Votre compte a bien été crée</div>
+			</div>
+		
+			<h1 style="text-align:center">Bienvenue sur MyResto</h1>
+			<p style="text-align:center">Toutes nos pizzas sont disponibles en livraison à l'adresse de votre choix.</p>
+        	
+        	<div class="row">
+        		<div class="col-3" th:each="pizza : ${listPizzas}">
+        			<div class="card card-shadow">
+        				<img class="card-img-top" th:attr="src=${pizza.image}" alt="Card image cap">
+        				<div class="card-body">
+        					<h5 class="card-title" th:text="${pizza.name}"></h5>
+        					<p class="card-text" th:text="${pizza.description}"></p>
+        					<a th:href="@{/showcommande/{name}(name=${pizza.name})}" class="btn btn-primary">Passer commande</a>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+		</div>
+	</body>
+</html>
