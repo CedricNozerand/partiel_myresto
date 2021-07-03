@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -54,6 +55,9 @@ public class User implements UserDetails {
 			inverseJoinColumns = @JoinColumn(
 						name = "role_id", referencedColumnName = "id"))
 	private Collection<Role> roles;
+	
+	@OneToMany
+	private Collection<Command> orders;
 
 	public User() {
 		

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 30 juin 2021 à 07:35
+-- Généré le : sam. 03 juil. 2021 à 14:50
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.10
 
@@ -24,26 +24,68 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `pizza`
+-- Structure de la table `command`
 --
 
-CREATE TABLE `pizza` (
+CREATE TABLE `command` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `price` varchar(255) DEFAULT NULL
+  `date` varchar(255) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `pizza`
+-- Déchargement des données de la table `command`
 --
 
-INSERT INTO `pizza` (`id`, `name`, `description`, `image`, `price`) VALUES
-(1, '4-Fromages', 'Sauce tomate à l\'origan ou crème fraîche légère, mozzarella, fromage de chèvre, emmental et Fourme d\'Ambert AOP', 'assets/4 Fromages.jpg', '12€'),
-(2, 'BPM', 'Sauce barbecue, mozzarella, haché au bœuf, filet de poulet rôti et merguez', 'assets/BPM.jpg', '10€'),
-(3, 'Pepperoni', 'Sauce tomate à l\'origan, mozzarella et saucisse pepperoni', 'assets/Pepperoni Lovers.jpg', '14€'),
-(4, 'Queen', 'Sauce tomate à l\'origan, mozzarella, jambon et champignons frais', 'assets/Queen.jpg', '12€');
+INSERT INTO `command` (`id`, `date`, `user_id`) VALUES
+(1, '03-07-2021 14:35:25', 1),
+(2, '03-07-2021 14:35:48', 1),
+(3, '03-07-2021 14:35:49', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `command_products`
+--
+
+CREATE TABLE `command_products` (
+  `command_id` bigint(20) NOT NULL,
+  `products_id` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `command_products`
+--
+
+INSERT INTO `command_products` (`command_id`, `products_id`) VALUES
+(1, 2),
+(2, 2),
+(3, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `product`
+--
+
+CREATE TABLE `product` (
+  `id` bigint(20) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `price` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `product`
+--
+
+INSERT INTO `product` (`id`, `description`, `image`, `name`, `price`, `type`) VALUES
+(1, 'Sauce tomate à l\'origan ou crème fraîche légère, mozzarella, fromage de chèvre, emmental et Fourme d\'Ambert AOP', '/assets/4 Fromages.jpg', '4-Fromages', '12.0', 'PIZZA'),
+(2, 'Sauce barbecue, mozzarella, haché au bœuf, filet de poulet rôti et merguez', '/assets/BPM.jpg', 'BPM', '10.0', 'PIZZA'),
+(3, 'Sauce tomate à l\'origan, mozzarella et saucisse pepperoni', '/assets/Pepperoni Lovers.jpg', 'Pepperoni', '14.0', 'PIZZA'),
+(4, 'Sauce tomate à l\'origan, mozzarella, jambon et champignons frais', '/assets/Queen.jpg', 'Queen', '12.0', 'PIZZA');
 
 -- --------------------------------------------------------
 
@@ -61,8 +103,7 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`id`, `name`) VALUES
-(1, 'MEMBER'),
-(2, 'ADMIN');
+(1, 'MEMBER');
 
 -- --------------------------------------------------------
 
@@ -85,7 +126,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `adress`, `email`, `first_name`, `last_name`, `password`, `phone_number`) VALUES
-(1, '11 Rue Gérard De Nerval', 'cedric.nozerand@gmail.com', 'Cédric', 'Nozerand', '$2a$10$kfULNHpHHy8ads6hqzaEMu7WKA0fHWou7xwVJqBu33AN5k0bMpz0m', '0601293069');
+(1, '11 Rue Gérard De Nerval', 'cedric.nozerand@gmail.com', 'Cédric', 'Nozerand', '$2a$10$1hsy.yxdmkHMX9hwjMuiEeRMzTXZcp3NTT5RQUZQAEGF8kEPaM5l6', '0601293069');
 
 -- --------------------------------------------------------
 
@@ -103,19 +144,43 @@ CREATE TABLE `users_roles` (
 --
 
 INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES
-(1, 2),
-(1, 2);
+(1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user_orders`
+--
+
+CREATE TABLE `user_orders` (
+  `user_id` bigint(20) NOT NULL,
+  `orders_id` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Index pour les tables déchargées
 --
 
 --
--- Index pour la table `pizza`
+-- Index pour la table `command`
 --
-ALTER TABLE `pizza`
+ALTER TABLE `command`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UK6n1plxa8aecur40e4q2vpcrps` (`name`);
+  ADD KEY `FKevwao6cjfmid4vxo87687q80i` (`user_id`);
+
+--
+-- Index pour la table `command_products`
+--
+ALTER TABLE `command_products`
+  ADD KEY `FK18m81slt86eikab9245keg19h` (`products_id`),
+  ADD KEY `FKekmvnppf3fcg6ihksh3ee8e0m` (`command_id`);
+
+--
+-- Index pour la table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UKjmivyxk9rmgysrmsqw15lqr5b` (`name`);
 
 --
 -- Index pour la table `role`
@@ -138,20 +203,33 @@ ALTER TABLE `users_roles`
   ADD KEY `FKgd3iendaoyh04b95ykqise6qh` (`user_id`);
 
 --
+-- Index pour la table `user_orders`
+--
+ALTER TABLE `user_orders`
+  ADD UNIQUE KEY `UK_oqipapb9ox7fhui5n2ttp9ab4` (`orders_id`),
+  ADD KEY `FKkuspr37yv513ga1okogyxrb7m` (`user_id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT pour la table `pizza`
+-- AUTO_INCREMENT pour la table `command`
 --
-ALTER TABLE `pizza`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `command`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `user`
@@ -164,11 +242,31 @@ ALTER TABLE `user`
 --
 
 --
+-- Contraintes pour la table `command`
+--
+ALTER TABLE `command`
+  ADD CONSTRAINT `FKevwao6cjfmid4vxo87687q80i` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `command_products`
+--
+ALTER TABLE `command_products`
+  ADD CONSTRAINT `FK18m81slt86eikab9245keg19h` FOREIGN KEY (`products_id`) REFERENCES `product` (`id`),
+  ADD CONSTRAINT `FKekmvnppf3fcg6ihksh3ee8e0m` FOREIGN KEY (`command_id`) REFERENCES `command` (`id`);
+
+--
 -- Contraintes pour la table `users_roles`
 --
 ALTER TABLE `users_roles`
   ADD CONSTRAINT `FKgd3iendaoyh04b95ykqise6qh` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `FKt4v0rrweyk393bdgt107vdx0x` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
+
+--
+-- Contraintes pour la table `user_orders`
+--
+ALTER TABLE `user_orders`
+  ADD CONSTRAINT `FK1rvwqv9qxvmctturrtpjoug6` FOREIGN KEY (`orders_id`) REFERENCES `command` (`id`),
+  ADD CONSTRAINT `FKkuspr37yv513ga1okogyxrb7m` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

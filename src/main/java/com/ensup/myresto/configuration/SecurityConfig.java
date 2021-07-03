@@ -39,10 +39,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		//http.authorizeRequests().anyRequest().permitAll();
 		
 		http.authorizeRequests()
-			.antMatchers("/", "/home", "/css/**", "/js/**", "/images/**", "/registration").permitAll()
+			.antMatchers("/", "/home", "/css/**", "/js/**", "/assets/**", "/registration").permitAll()
 			.antMatchers("/administrator").hasAuthority("ADMIN")
-			.antMatchers("/commande").hasAuthority("MEMBER")
-			.antMatchers("/historic").hasRole("MEMBER")
+			.antMatchers("/commande").hasAnyAuthority("MEMBER", "ADMIN")
+			.antMatchers("/historic").hasAnyAuthority("MEMBER", "ADMIN")
 			.anyRequest().authenticated()
 			.and()
 			.exceptionHandling().accessDeniedPage("/403")

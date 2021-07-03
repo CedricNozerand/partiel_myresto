@@ -5,23 +5,23 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ensup.myresto.domaine.Pizza;
-import com.ensup.myresto.repository.PizzaRepository;
+import com.ensup.myresto.domaine.Product;
+import com.ensup.myresto.repository.ProductRepository;
 
 public class PizzaServiceImpl implements PizzaService {
 
 	@Autowired
-	private PizzaRepository pizzaRepository;
+	private ProductRepository pizzaRepository;
 	
 	@Override
-	public List<Pizza> getAllPizzas() {
+	public List<Product> getAllPizzas() {
 		return pizzaRepository.findAll();
 	}
 
 	@Override
-	public Pizza getPizzaByID(long id) {
-		Optional<Pizza> optional = pizzaRepository.findById(id);
-		Pizza pizza = null;
+	public Product getPizzaByID(long id) {
+		Optional<Product> optional = pizzaRepository.findById(id);
+		Product pizza = null;
 		if(optional.isPresent()) {
 			pizza = optional.get();
 		}else {
@@ -31,8 +31,8 @@ public class PizzaServiceImpl implements PizzaService {
 	}
 
 	@Override
-	public Pizza getPizzaByName(String name) {
-		Pizza pizza = pizzaRepository.findByName(name);
+	public Product getPizzaByName(String name) {
+		Product pizza = pizzaRepository.findByName(name);
 		if(pizza != null) {
 			return pizza;
 		}

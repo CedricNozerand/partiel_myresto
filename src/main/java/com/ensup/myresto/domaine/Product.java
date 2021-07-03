@@ -8,8 +8,16 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="pizza", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
-public class Pizza {
+@Table(name="product", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
+public class Product {
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,18 +26,20 @@ public class Pizza {
 	private String name;
 	private String description;
 	private String image;
-	private String price;
+	private double price;
+	private String type;
 	
-	public Pizza() {
+	public Product() {
 		
 	}
 
-	public Pizza(String name, String description, String image, String price) {
+	public Product(String name, String description, String image, double price, String type) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.image = image;
 		this.price = price;
+		this.type = type;
 	}
 	
 	public String getName() {
@@ -56,11 +66,11 @@ public class Pizza {
 		this.image = image;
 	}
 
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 }

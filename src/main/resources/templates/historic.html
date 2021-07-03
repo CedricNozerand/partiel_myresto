@@ -6,10 +6,8 @@
 		<nav th:insert="fragments/fragments :: navbar"></nav>
 	
 		<div class="container">
+			<h1 style="text-align: center">Historique des commande</h1>
 			
-			<span th:if="${pizza != null && #strings.isEmpty(pizza.name) == false}" th:text="${pizza.name}"></span>
-			
-			<h1 style="text-align: center">Votre commande en cours</h1>
 		</div>
 	</body>
 </html>

@@ -26,14 +26,22 @@
 		  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    	<ul class="navbar-nav mr-auto">
 		      		<li class="nav-item active">
-		        		<a class="nav-link" href="#">Acceuil</a>
-		      		</li>
-		      		<li class="nav-item">
-		        		<a class="nav-link" th:href="@{/historic}">Historique</a>
+		        		<a class="nav-link" href="/home">Acceuil</a>
 		      		</li>
 		      		
+		      		<div sec:authorize="isAuthenticated()">
+		      			<li class="nav-item">
+			        		<a class="nav-link" th:href="@{/commande}">Commande</a>
+			      		</li>
+		      		</div>
 		      		
+		      		<div sec:authorize="isAuthenticated()">
+			      		<li class="nav-item">
+			        		<a class="nav-link" th:href="@{/historic}">Historique des commandes</a>
+			      		</li>
+		      		</div>
 		    	</ul>
+		    	
 		    	<div class="form-inline my-2 my-lg-0">
 		    	
 		    		<div sec:authorize="isAuthenticated()">
