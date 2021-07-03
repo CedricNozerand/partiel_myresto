@@ -11,14 +11,6 @@ import javax.persistence.UniqueConstraint;
 @Table(name="product", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Product {
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -72,5 +64,18 @@ public class Product {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Long getId()
+	{
+		return id;
 	}
 }

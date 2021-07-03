@@ -14,20 +14,38 @@
 			<div th:if="${param.success}">
 				<div class="alert alert-success">Votre compte a bien été crée</div>
 			</div>
+			
+			<div th:if="${successMessage != null && !successMessage.isEmpty()}">
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+				  	<strong><span th:text="${successMessage}"></span></strong>
+				  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				    	<span aria-hidden="true">&times;</span>
+				  	</button>
+				</div>
+			</div>
+			
+			<div th:if="${errorMessage != null && !errorMessage.isEmpty()}">
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				  	<strong><span th:text="${errorMessage}"></span></strong>
+				  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				    	<span aria-hidden="true">&times;</span>
+				  	</button>
+				</div>
+			</div>
 		
 			<h1 style="text-align:center">Bienvenue sur MyResto</h1>
-			<p style="text-align:center">Toutes nos pizzas sont disponibles en livraison à l'adresse de votre choix.</p>
+			<p style="text-align:center">Tous nos produits sont disponibles en livraison à l'adresse de votre choix.</p>
         	
         	<div class="row">
-        		<div class="col-3" th:each="pizza : ${listPizzas}">
+        		<div class="col-3" th:each="product : ${products}">
         			<div class="card card-shadow h-100">
-        				<img class="card-img-top" th:attr="src=${pizza.image}" alt="Card image cap">
+        				<img class="card-img-top" th:attr="src=${product.image}" alt="Card image cap">
         				<div class="card-body">
-        					<h5 class="card-title" th:text="${pizza.name}"></h5>
-        					<p class="card-text" th:text="${pizza.description}"></p>
+        					<h5 class="card-title" th:text="${product.name}"></h5>
+        					<p class="card-text" th:text="${product.description}"></p>
         				</div>
         				<div class="card-footer">
-        					<a th:href="@{/addToCommande/{name}(name=${pizza.name})}" class="btn btn-primary">Ajouter à la commande</a>
+        					<a th:href="@{/addToCommande/{name}(name=${product.name})}" class="btn btn-primary">Ajouter à la commande</a>
         				</div>
         			</div>
         		</div>

@@ -1,9 +1,5 @@
 package com.ensup.myresto.controller;
 
-import java.security.Principal;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,43 +9,71 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.ensup.myresto.domaine.Command;
+import com.ensup.myresto.domaine.CommandStatus;
 import com.ensup.myresto.domaine.Product;
-import com.ensup.myresto.repository.CommandRepository;
-import com.ensup.myresto.repository.ProductRepository;
-import com.ensup.myresto.repository.UserRepository;
+import com.ensup.myresto.service.CommandService;
+import com.ensup.myresto.service.ProductService;
+import com.ensup.myresto.service.UserService;
 
 @Controller
 public class CommandeController {
 
 	@Autowired
-	private ProductRepository productRepository;
+	private ProductService productService;
 	
 	@Autowired
-	private CommandRepository commandRepository;
+	private CommandService commandService;
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 	
 	@GetMapping("/addToCommande/{name}")
-	public String showCommande(@PathVariable(name = "name") String name, Model model) {
-		Product product = productRepository.findByName(name);
+	public String addToCommand(@PathVariable(name = "name") String productName, Model model) {
+		
+		Product product = productService.getProductByName(productName);
 		
 		Date date = new Date();
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		//SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 		
-		Collection<Product> products = new ArrayList<Product>();
-		products.add(product);
+		// TODO : Get the actual current connected user
+		Command command = commandService.getActiveCommandOrCreateOne(userService.findByEmail("cedric.nozerand@gmail.com"));
 		
-		Command command = new Command(formatter.format(date), userRepository.findByEmail("cedric.nozerand@gmail.com"), products);
+		command.getProducts().add(product);
+		command.setDate(date);
 		
-		commandRepository.save(command);
+		commandService.save(command);
 		
-		model.addAttribute("listPizzas", productRepository.findAll());
+		model.addAttribute("successMessage", "Le produit " + product.getName() + " a été ajouté à la commande.");
+		
+		model.addAttribute("products", productService.getAllProducts());
+		
 		return "home";
 	}
 	
 	@GetMapping("/commande")
-	public String commande() {
+	public String commande(Model model) {
+
+		// TODO : Get the actual current connected user
+		Command command = commandService.getActiveCommandOrCreateOne(userService.findByEmail("cedric.nozerand@gmail.com"));
+		
+		model.addAttribute("command", command);
+		
 		return "commande";
+	}
+	
+	@GetMapping("/validateCommand/{commandId}")
+	public String showCommande(@PathVariable(name = "commandId") Long commandId, Model model) {
+		
+		Command command = commandService.getCommandById(commandId);
+		
+		command.setStatus(CommandStatus.Paid);
+		
+		commandService.save(command);
+		
+		model.addAttribute("successMessage", "La commande n° " + command.getId() + " a bien été enregistrée.");
+		
+		model.addAttribute("products", productService.getAllProducts());
+		
+		return "home";
 	}
 }

@@ -16,7 +16,7 @@ public class HomeController {
 	
 	@RequestMapping(value={"", "/", "/home"})
 	public String home(Model model) {
-		model.addAttribute("listPizzas", productRepository.findAll());
+		model.addAttribute("products", productRepository.findAll());
 		return "home";
 	}
 }

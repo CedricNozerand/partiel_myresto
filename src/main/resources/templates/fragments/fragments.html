@@ -37,7 +37,7 @@
 		      		
 		      		<div sec:authorize="isAuthenticated()">
 			      		<li class="nav-item">
-			        		<a class="nav-link" th:href="@{/historic}">Historique des commandes</a>
+			        		<a class="nav-link" th:href="@{/historique}">Historique des commandes</a>
 			      		</li>
 		      		</div>
 		    	</ul>
@@ -49,7 +49,7 @@
 		    		</div>
 		    	
 		    		<div sec:authorize="!isAuthenticated()">
-		    			<a class="btn btn-outline-danger mr-sm-2" type="submit" th:href="@{/registration}">Creer un compte</a>
+		    			<a class="btn btn-outline-danger mr-sm-2" type="submit" th:href="@{/registration}">Créer un compte</a>
 			     	 	<a class="btn btn-outline-success my-2 my-sm-0" type="submit" href="/login">Connexion</a>
 		    		</div>
 		    	</div>

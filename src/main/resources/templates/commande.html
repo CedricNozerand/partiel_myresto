@@ -6,10 +6,25 @@
 		<nav th:insert="fragments/fragments :: navbar"></nav>
 	
 		<div class="container">
-			
-			<span th:if="${pizza != null && #strings.isEmpty(pizza.name) == false}" th:text="${pizza.name}"></span>
-			
 			<h1 style="text-align: center">Votre commande en cours</h1>
+        	
+        	<div class="row">
+        		<div th:if="${!command.products.isEmpty()}">
+	        		<div class="col-3" th:each="product : ${command.products}">
+	        			<div class="card card-shadow h-100">
+	        				<img class="card-img-top" th:attr="src=${product.image}" alt="Card image cap">
+	        				<div class="card-body">
+	        					<h5 class="card-title" th:text="${product.name}"></h5>
+	        					<p class="card-text" th:text="${product.description}"></p>
+	        				</div>
+	        			</div>
+	        		</div>
+        			<a th:href="@{/validateCommand/{commandId}(commandId=${command.id})}" class="btn btn-primary">Valider</a>
+	        	</div>
+        		<div th:if="${command.products.isEmpty()}">
+        			<span>Aucun produit dans cette commande.</span>
+        		</div>
+        	</div>
 		</div>
 	</body>
 </html>
