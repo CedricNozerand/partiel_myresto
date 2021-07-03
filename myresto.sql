@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 03 juil. 2021 à 14:50
--- Version du serveur :  10.4.14-MariaDB
--- Version de PHP : 7.4.10
+-- Généré le :  sam. 03 juil. 2021 à 20:26
+-- Version du serveur :  10.1.36-MariaDB
+-- Version de PHP :  7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `myresto`
+-- Base de données :  `myresto`
 --
 
 -- --------------------------------------------------------
@@ -29,18 +30,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `command` (
   `id` bigint(20) NOT NULL,
-  `date` varchar(255) DEFAULT NULL,
-  `user_id` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `date` datetime DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `user_id` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `command`
 --
 
-INSERT INTO `command` (`id`, `date`, `user_id`) VALUES
-(1, '03-07-2021 14:35:25', 1),
-(2, '03-07-2021 14:35:48', 1),
-(3, '03-07-2021 14:35:49', 1);
+INSERT INTO `command` (`id`, `date`, `status`, `user_id`) VALUES
+(1, '2021-07-03 16:30:58', 'Paid', 1),
+(2, '2021-07-03 17:05:52', 'Paid', 1),
+(3, '2021-07-03 18:25:00', 'Active', 1);
 
 -- --------------------------------------------------------
 
@@ -51,16 +53,18 @@ INSERT INTO `command` (`id`, `date`, `user_id`) VALUES
 CREATE TABLE `command_products` (
   `command_id` bigint(20) NOT NULL,
   `products_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `command_products`
 --
 
 INSERT INTO `command_products` (`command_id`, `products_id`) VALUES
+(1, 1),
 (1, 2),
-(2, 2),
-(3, 4);
+(2, 1),
+(2, 3),
+(3, 1);
 
 -- --------------------------------------------------------
 
@@ -70,22 +74,22 @@ INSERT INTO `command_products` (`command_id`, `products_id`) VALUES
 
 CREATE TABLE `product` (
   `id` bigint(20) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `price` varchar(255) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `description` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `price` double NOT NULL,
+  `type` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `product`
 --
 
 INSERT INTO `product` (`id`, `description`, `image`, `name`, `price`, `type`) VALUES
-(1, 'Sauce tomate à l\'origan ou crème fraîche légère, mozzarella, fromage de chèvre, emmental et Fourme d\'Ambert AOP', '/assets/4 Fromages.jpg', '4-Fromages', '12.0', 'PIZZA'),
-(2, 'Sauce barbecue, mozzarella, haché au bœuf, filet de poulet rôti et merguez', '/assets/BPM.jpg', 'BPM', '10.0', 'PIZZA'),
-(3, 'Sauce tomate à l\'origan, mozzarella et saucisse pepperoni', '/assets/Pepperoni Lovers.jpg', 'Pepperoni', '14.0', 'PIZZA'),
-(4, 'Sauce tomate à l\'origan, mozzarella, jambon et champignons frais', '/assets/Queen.jpg', 'Queen', '12.0', 'PIZZA');
+(1, 'Sauce tomate à l\'origan ou crème fraîche légère, mozzarella, fromage de chèvre, emmental et Fourme d\'Ambert AOP', '/assets/4 Fromages.jpg', '4-Fromages', 12, 'PIZZA'),
+(2, 'Sauce barbecue, mozzarella, haché au bœuf, filet de poulet rôti et merguez', '/assets/BPM.jpg', 'BPM', 10, 'PIZZA'),
+(3, 'Sauce tomate à l\'origan, mozzarella et saucisse pepperoni', '/assets/Pepperoni Lovers.jpg', 'Pepperoni', 14, 'PIZZA'),
+(4, 'Sauce tomate à l\'origan, mozzarella, jambon et champignons frais', '/assets/Queen.jpg', 'Queen', 12, 'PIZZA');
 
 -- --------------------------------------------------------
 
@@ -95,8 +99,8 @@ INSERT INTO `product` (`id`, `description`, `image`, `name`, `price`, `type`) VA
 
 CREATE TABLE `role` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `role`
@@ -113,20 +117,20 @@ INSERT INTO `role` (`id`, `name`) VALUES
 
 CREATE TABLE `user` (
   `id` bigint(20) NOT NULL,
-  `adress` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `phone_number` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `adress` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `phone_number` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `adress`, `email`, `first_name`, `last_name`, `password`, `phone_number`) VALUES
-(1, '11 Rue Gérard De Nerval', 'cedric.nozerand@gmail.com', 'Cédric', 'Nozerand', '$2a$10$1hsy.yxdmkHMX9hwjMuiEeRMzTXZcp3NTT5RQUZQAEGF8kEPaM5l6', '0601293069');
+(1, '11 Rue Gérard De Nerval', 'cedric.nozerand@gmail.com', 'Cédric', 'Nozerand', '$2y$07$EFdcjXaO6FVga8dB9nQlLehmVmyZ2WzLCw5lNsA2RMLh6I0jhTNL6', '0601293069');
 
 -- --------------------------------------------------------
 
@@ -137,7 +141,7 @@ INSERT INTO `user` (`id`, `adress`, `email`, `first_name`, `last_name`, `passwor
 CREATE TABLE `users_roles` (
   `user_id` bigint(20) NOT NULL,
   `role_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `users_roles`
@@ -145,17 +149,6 @@ CREATE TABLE `users_roles` (
 
 INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES
 (1, 1);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `user_orders`
---
-
-CREATE TABLE `user_orders` (
-  `user_id` bigint(20) NOT NULL,
-  `orders_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Index pour les tables déchargées
@@ -201,13 +194,6 @@ ALTER TABLE `user`
 ALTER TABLE `users_roles`
   ADD KEY `FKt4v0rrweyk393bdgt107vdx0x` (`role_id`),
   ADD KEY `FKgd3iendaoyh04b95ykqise6qh` (`user_id`);
-
---
--- Index pour la table `user_orders`
---
-ALTER TABLE `user_orders`
-  ADD UNIQUE KEY `UK_oqipapb9ox7fhui5n2ttp9ab4` (`orders_id`),
-  ADD KEY `FKkuspr37yv513ga1okogyxrb7m` (`user_id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -260,13 +246,6 @@ ALTER TABLE `command_products`
 ALTER TABLE `users_roles`
   ADD CONSTRAINT `FKgd3iendaoyh04b95ykqise6qh` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `FKt4v0rrweyk393bdgt107vdx0x` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
-
---
--- Contraintes pour la table `user_orders`
---
-ALTER TABLE `user_orders`
-  ADD CONSTRAINT `FK1rvwqv9qxvmctturrtpjoug6` FOREIGN KEY (`orders_id`) REFERENCES `command` (`id`),
-  ADD CONSTRAINT `FKkuspr37yv513ga1okogyxrb7m` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

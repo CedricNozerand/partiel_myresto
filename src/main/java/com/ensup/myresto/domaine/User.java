@@ -2,6 +2,7 @@ package com.ensup.myresto.domaine;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -56,8 +57,8 @@ public class User implements UserDetails {
 						name = "role_id", referencedColumnName = "id"))
 	private Collection<Role> roles;
 	
-	@OneToMany
-	private Collection<Command> orders;
+	@OneToMany(mappedBy = "user")
+	private Set<Command> commands;
 
 	public User() {
 		
@@ -128,6 +129,16 @@ public class User implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Set<Command> getCommands()
+	{
+		return commands;
+	}
+
+	public void setCommands(Set<Command> commands)
+	{
+		this.commands = commands;
 	}
 
 	public Collection<Role> getRoles() {

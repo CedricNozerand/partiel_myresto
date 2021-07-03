@@ -8,4 +8,6 @@ import com.ensup.myresto.web.dto.UserRegistrationDto;
 public interface UserService extends UserDetailsService{
 
 	User save(UserRegistrationDto registrationDto);
+	
+	User findByEmail(String email);
 }
