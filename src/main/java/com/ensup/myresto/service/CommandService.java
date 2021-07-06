@@ -19,4 +19,8 @@ public interface CommandService
 	List<Command> getAllCommandsByStatut(String statut);
 	
 	List<Command> getAllCommands();
+
+	Command changeStatus(String status, Command command);
+
+	Command changeStatus(Command command);
 }
