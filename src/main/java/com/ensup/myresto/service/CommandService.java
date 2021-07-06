@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.ensup.myresto.domaine.Command;
+import com.ensup.myresto.domaine.CommandStatus;
 import com.ensup.myresto.domaine.User;
 
 public interface CommandService
@@ -20,7 +21,7 @@ public interface CommandService
 	
 	List<Command> getAllCommands();
 
-	Command changeStatus(String status, Command command);
+	Command changeStatus(CommandStatus status, Command command);
 
 	Command changeStatus(Command command);
 }

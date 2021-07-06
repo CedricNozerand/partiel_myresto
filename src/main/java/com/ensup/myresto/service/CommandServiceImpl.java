@@ -128,4 +128,12 @@ public class CommandServiceImpl implements CommandService
 	public List<Command> getAllCommandsByStatut(String status) {
 		return commandRepository.getAllCommandByStatut(status);
 	}
+
+	@Override
+	public Command changeStatus(CommandStatus status, Command command)
+	{
+		command.setStatus(status);
+
+		return null;
+	}
 }
