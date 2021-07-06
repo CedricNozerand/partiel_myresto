@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head th:insert="fragments/fragments :: header"><meta charset="UTF-8"></head>
+	
+	<body>
+		<nav th:insert="fragments/fragments :: navbar"></nav>
+	
+		<div class="container">
+			
+			<h1 style="text-align: center">Historique des commandes</h1>
+			
+			<div class="row">
+			<div th:if="${!list_commands.isEmpty()}">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Numéro</th>
+							<th scope="col">Date</th>
+							<th scope="col">Heure</th>
+							<th scope="col">Prix</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="command : ${list_commands}">
+							<th scope="row" th:text="${command.id}"/>
+							<td th:text="${#dates.format(command.Date, 'dd/MM/yyyy')}"/>
+							<td th:text="${#dates.format(command.Date, 'HH:mm')}"/>
+							<td th:text="${command.getPrice() + ' €'}"/>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div th:if="${list_commands.isEmpty()}">
+				<span>Aucune commande.</span>
+			</div>
+		</div>
+			
+		</div>
+	</body>
+</html>

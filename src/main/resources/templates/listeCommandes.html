@@ -9,7 +9,48 @@
 	<nav th:insert="fragments/fragments :: navbar"></nav>
 
 	<div class="container">
-		<h1 style="text-align: center">Listes des commandes</h1>
+	
+		<h1 style="text-align: center">Espace administration</h1>
+		<hr>
+	
+		<div class="row">
+			<div class="col">
+				<div class="card shadow">
+					<div class="card-body">
+						<h5 class="card-title">Statistiques des commandes</h5>
+						Afficher les statistiques des commandes de l'année en cours
+					</div>
+					<div class="card-footer">
+						<a href="" class="btn btn-success">Voir les statistiques</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col">
+				<div class="card shadow">
+					<div class="card-body">
+						<h5 class="card-title">Historique des commandes</h5>
+						Afficher l'historique des commandes
+					</div>
+					<div class="card-footer">
+						<a th:href="@{/allHistorique}" class="btn btn-success">Voir l'historique</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<hr>
+		<h1 style="text-align: center; margin-top: 50px">Commandes en cours</h1>
+
+		<form method="POST" th:action="@{/allCommand}">
+			<div class="form-group">
+				<select class="form-control" name="select_status">
+					<option value="Paid">Payée</option>
+					<option value="Active">En cours de livraison</option>
+				</select>
+			</div>
+			<input type="submit" class="btn btn-success" value="Afficher">
+		</form>
 
 		<div class="row">
 			<div th:if="${!commandList.isEmpty()}">

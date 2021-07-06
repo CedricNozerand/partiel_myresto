@@ -97,4 +97,9 @@ public class CommandServiceImpl implements CommandService
 	{
 		return commandRepository.findAll();
 	}
+
+	@Override
+	public List<Command> getAllCommandsByStatut(String status) {
+		return commandRepository.getAllCommandByStatut(status);
+	}
 }

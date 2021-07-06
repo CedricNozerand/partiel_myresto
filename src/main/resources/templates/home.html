@@ -36,20 +36,58 @@
 			<h1 style="text-align:center">Bienvenue sur MyResto</h1>
 			<p style="text-align:center">Tous nos produits sont disponibles en livraison à l'adresse de votre choix.</p>
         	
-        	<div class="row">
-        		<div class="col-3" th:each="product : ${products}">
+        	
+        	<h3>Toutes nos pizzas</h3>
+        	<hr>
+        	<div class="row" style="margin-bottom: 50px">
+        		<div class="col-3" th:each="pizza : ${pizza_list}" style="margin-bottom: 20px">
         			<div class="card card-shadow h-100">
-        				<img class="card-img-top" th:attr="src=${product.image}" alt="Card image cap">
+        				<img class="card-img-top" th:attr="src=${pizza.image}" alt="Card image cap">
         				<div class="card-body">
-        					<h5 class="card-title" th:text="${product.name}"></h5>
-        					<p class="card-text" th:text="${product.description}"></p>
+        					<h5 class="card-title" th:text="${pizza.name}"></h5>
+        					<p class="card-text" th:text="${pizza.description}"></p>
         				</div>
         				<div class="card-footer">
-        					<a th:href="@{/addToCommande/{name}(name=${product.name})}" class="btn btn-primary">Ajouter à la commande</a>
+        					<a th:href="@{/addToCommande/{name}(name=${pizza.name})}" class="btn btn-primary">Ajouter à la commande</a>
         				</div>
         			</div>
         		</div>
         	</div>
+        	
+        	<h3>Tous nos desserts</h3>
+        	<hr>
+        	<div class="row" style="margin-bottom: 50px">
+        		<div class="col-3" th:each="dessert : ${dessert_list}" style="margin-bottom: 20px">
+        			<div class="card card-shadow h-100">
+        				<img class="card-img-top" th:attr="src=${dessert.image}" alt="Card image cap">
+        				<div class="card-body">
+        					<h5 class="card-title" th:text="${dessert.name}"></h5>
+        					<p class="card-text" th:text="${dessert.description}"></p>
+        				</div>
+        				<div class="card-footer">
+        					<a th:href="@{/addToCommande/{name}(name=${dessert.name})}" class="btn btn-primary">Ajouter à la commande</a>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        	
+        	<h3>Toutes nos boissons</h3>
+        	<hr>
+        	<div class="row">
+        		<div class="col-3" th:each="boisson : ${boisson_list}" style="margin-bottom: 20px">
+        			<div class="card card-shadow h-100">
+        				<img class="card-img-top" th:attr="src=${boisson.image}" alt="Card image cap">
+        				<div class="card-body">
+        					<h5 class="card-title" th:text="${boisson.name}"></h5>
+        					<p class="card-text" th:text="${boisson.description}"></p>
+        				</div>
+        				<div class="card-footer">
+        					<a th:href="@{/addToCommande/{name}(name=${boisson.name})}" class="btn btn-primary">Ajouter à la commande</a>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        	
 		</div>
 	</body>
 </html>

@@ -7,7 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ensup.myresto.domaine.Command;
 import com.ensup.myresto.domaine.CommandStatus;
@@ -80,9 +85,13 @@ public class CommandeController {
 	
 	@GetMapping("/allCommande")
 	public String getAllCommands(Model model){
-		List<Command> commands = commandService.getAllCommands();
-		System.out.println(commands);
-		model.addAttribute("commandList", commands);
+		model.addAttribute("commandList", commandService.getAllCommands());
 		return "listeCommandes";
 	}
+	
+//	@RequestMapping(value="/allCommand", method=RequestMethod.POST)
+//	public String getAllCommands(@RequestParam("select_status") String status, Model model){
+//		model.addAttribute("commandList", commandService.getAllCommandsByStatut(status));
+//		return "listeCommandes";
+//	}
 }

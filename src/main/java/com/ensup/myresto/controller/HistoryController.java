@@ -35,4 +35,12 @@ public class HistoryController {
 		
 		return "historique";
 	}
+	
+	@GetMapping("/allHistorique")
+	public String showAllHistory(Model model) {
+		
+		model.addAttribute("list_commands", commandService.getAllCommands());
+		
+		return "allHistorique";
+	}
 }
