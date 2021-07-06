@@ -21,7 +21,5 @@ public interface CommandService
 	
 	List<Command> getAllCommands();
 
-	Command changeStatus(CommandStatus status, Command command);
-
 	Command changeStatus(Command command);
 }

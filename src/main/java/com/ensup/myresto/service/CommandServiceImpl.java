@@ -123,19 +123,11 @@ public class CommandServiceImpl implements CommandService
 				break;
 		}
 		
-		return command;
+		return commandRepository.save(command);
 	}
 
 	@Override
 	public List<Command> getAllCommandsByStatut(String status) {
 		return commandRepository.getAllCommandByStatut(status);
-	}
-
-	@Override
-	public Command changeStatus(CommandStatus status, Command command)
-	{
-		command.setStatus(status);
-
-		return command;
 	}
 }
