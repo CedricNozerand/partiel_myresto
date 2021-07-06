@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 06 juil. 2021 à 10:30
--- Version du serveur :  10.4.19-MariaDB
--- Version de PHP : 7.3.28
+-- Généré le : mar. 06 juil. 2021 à 15:25
+-- Version du serveur :  10.4.14-MariaDB
+-- Version de PHP : 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,11 +39,12 @@ CREATE TABLE `command` (
 --
 
 INSERT INTO `command` (`id`, `date`, `status`, `user_id`) VALUES
-(1, '2021-07-03 16:30:58', 'Paid', 1),
+(1, '2021-07-03 16:30:58', 'Closed', 1),
 (2, '2021-07-03 17:05:52', 'Paid', 1),
 (3, '2021-07-03 18:25:00', 'Paid', 1),
 (4, '2021-07-03 18:42:58', 'Paid', 1),
-(5, '2021-07-06 07:52:14', 'Paid', 1);
+(5, '2021-07-06 07:52:14', 'Paid', 1),
+(6, '2021-07-06 09:08:45', 'Active', 1);
 
 -- --------------------------------------------------------
 
@@ -94,7 +95,21 @@ INSERT INTO `product` (`id`, `description`, `image`, `name`, `price`, `type`) VA
 (1, 'Sauce tomate à l\'origan ou crème fraîche légère, mozzarella, fromage de chèvre, emmental et Fourme d\'Ambert AOP', '/assets/4 Fromages.jpg', '4-Fromages', 12, 'PIZZA'),
 (2, 'Sauce barbecue, mozzarella, haché au bœuf, filet de poulet rôti et merguez', '/assets/BPM.jpg', 'BPM', 10, 'PIZZA'),
 (3, 'Sauce tomate à l\'origan, mozzarella et saucisse pepperoni', '/assets/Pepperoni Lovers.jpg', 'Pepperoni', 14, 'PIZZA'),
-(4, 'Sauce tomate à l\'origan, mozzarella, jambon et champignons frais', '/assets/Queen.jpg', 'Queen', 12, 'PIZZA');
+(4, 'Sauce tomate à l\'origan, mozzarella, jambon et champignons frais', '/assets/Queen.jpg', 'Queen', 12, 'PIZZA'),
+(5, 'Délicieux Cookie aux pépites de chocolat noir servi chaud. Idéal à partager!', '/assets/coockie.jpg', 'Coockie', 5, 'DESSERT'),
+(6, '8 Bâtonnets de pâte à pizza garnis de véritable Nutella', '/assets/breadsticks.jpg', 'Breadsticks', 6, 'DESSERT'),
+(7, '4 Mini Beignets fourrés au véritable Nutella', '/assets/beignets.jpg', 'Beignets', 4, 'DESSERT'),
+(8, 'Coeur Fondant au chocolat', '/assets/brownie.jpg', 'Brownie', 5, 'DESSERT'),
+(9, 'Coca-Cola Original 33cl', '/assets/coca.jpg', 'Coca Cola', 3, 'BOISSON'),
+(10, 'Oasis Tropical 33cl', '/assets/tropical.jpg', 'Oasis', 3, 'BOISSON'),
+(11, 'Orangina 33cl', '/assets/orangina.jpg', 'Orangina', 4, 'BOISSON'),
+(12, 'Fuze Tea 33cl', '/assets/fuzetea.jpg', 'Fuze Tea', 4, 'BOISSON'),
+(13, 'Sprite 33cl', '/assets/sprite.jpg', 'Sprite', 3, 'BOISSON'),
+(14, 'Vittel 50cl', '/assets/eau.jpg', 'Vittel', 2, 'BOISSON'),
+(15, 'Crème fraîche légère, mozzarella, jambon cru, fromage à raclette et champignons frais', '/assets/montagnarde.jpg', 'Montagnarde', 13, 'PIZZA'),
+(16, 'Sauce tomate à l\'origan, mozzarella, haché au bœuf, saucisse pepperoni, champignons frais, oignons rouges frais et poivrons verts frais', '/assets/supreme.jpg', 'Suprême', 15, 'PIZZA'),
+(17, 'Crème fraîche légère, mozzarella, pommes de terre, lardons et fromage à raclette', '/assets/raclette.jpg', 'Raclette', 12, 'PIZZA'),
+(18, 'Sauce tomate à l\'origan, mozzarella, merguez et champignons frais', '/assets/orientale.jpg', 'Orientale', 13, 'PIZZA');
 
 -- --------------------------------------------------------
 
@@ -211,13 +226,13 @@ ALTER TABLE `users_roles`
 -- AUTO_INCREMENT pour la table `command`
 --
 ALTER TABLE `command`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT pour la table `role`
