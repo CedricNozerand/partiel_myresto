@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +28,9 @@ public class HistoryController {
 	public String showHistory(Model model) {
 
 		// TODO : Get the actual current connected user
-		User user = userService.findByEmail("cedric.nozerand@gmail.com");
+		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+	    String email = loggedInUser.getName(); 
+		User user = userService.findByEmail(email);
 		
 		Set<Command> unsortedCommands = user.getCommands();
 		
