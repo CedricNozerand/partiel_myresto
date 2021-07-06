@@ -40,4 +40,10 @@ public class ProductServiceImpl implements ProductService
 		}
 		throw new RuntimeException("La product " + name + " est introuvable");
 	}
+
+	@Override
+	public List<Product> findByType(String type)
+	{
+		return productRepository.findByType(type);
+	}
 }
