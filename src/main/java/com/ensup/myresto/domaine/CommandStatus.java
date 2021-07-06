@@ -4,5 +4,8 @@ public enum CommandStatus
 {
 	Active,
 	Paid,
-	Closed
+	InProcess,
+	Closed,
+	
+	
 }

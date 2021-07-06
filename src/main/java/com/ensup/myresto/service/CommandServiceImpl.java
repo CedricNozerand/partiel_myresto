@@ -25,9 +25,6 @@ public class CommandServiceImpl implements CommandService
 	public Command getActiveCommandOrCreateOne(User user)
 	{
 		Set<Command> commands = user.getCommands();
-		System.out.println("#######");
-		System.out.println("#######");
-		System.out.println("#######");
 		System.out.println("Commandes de l'utilisateur " + user.getFirstName() + " :");
 		System.out.println(commands);
 		
@@ -35,24 +32,16 @@ public class CommandServiceImpl implements CommandService
 		{
 			for (Command command : commands)
 			{
-				System.out.println("#######");
-				System.out.println("#######");
-				System.out.println("#######");
+
 				System.out.println("Commande : Id = " + command.getId() + ", Status = " + command.getStatus());
 				if (command.getStatus() == CommandStatus.Active)
 				{
-					System.out.println("#######");
-					System.out.println("#######");
-					System.out.println("#######");
 					System.out.println("Commande trouvée !");
 					return command;
 				}
 			}
 		}
 
-		System.out.println("#######");
-		System.out.println("#######");
-		System.out.println("#######");
 		System.out.println("Aucune commande trouvée !");
 		// If no active command is found, create one
 		Collection<Product> products = new ArrayList<Product>();
@@ -77,7 +66,8 @@ public class CommandServiceImpl implements CommandService
 	{
 		List<Command> activeCommands = new ArrayList<Command>(),
 			paidCommands = new ArrayList<Command>(),
-			closedCommands = new ArrayList<Command>();
+			closedCommands = new ArrayList<Command>(),
+			inProcessCommands = new ArrayList<Command>();
 		
 		for (Command command : unsortedCommands)
 		{
@@ -85,6 +75,8 @@ public class CommandServiceImpl implements CommandService
 				activeCommands.add(command);
 			else if (command.getStatus() == CommandStatus.Paid)
 				paidCommands.add(command);
+			else if (command.getStatus() == CommandStatus.InProcess)
+				inProcessCommands.add(command);
 			else if (command.getStatus() == CommandStatus.Closed)
 				closedCommands.add(command);
 		}
@@ -93,8 +85,16 @@ public class CommandServiceImpl implements CommandService
 		
 		sortedCommands.addAll(activeCommands);
 		sortedCommands.addAll(paidCommands);
+		sortedCommands.addAll(inProcessCommands);
 		sortedCommands.addAll(closedCommands);
 		
 		return sortedCommands;
+	}
+
+
+	@Override
+	public List<Command> getAllCommands()
+	{
+		return commandRepository.findAll();
 	}
 }

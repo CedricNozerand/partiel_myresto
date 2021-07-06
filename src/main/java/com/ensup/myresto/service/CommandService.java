@@ -15,4 +15,6 @@ public interface CommandService
 	public Command getCommandById(Long commandId);
 
 	public List<Command> sort(Set<Command> unsortedCommands);
+
+	List<Command> getAllCommands();
 }

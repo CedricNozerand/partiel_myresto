@@ -40,6 +40,14 @@
 			        		<a class="nav-link" th:href="@{/historique}">Historique des commandes</a>
 			      		</li>
 		      		</div>
+		      		
+		      		<div sec:authorize="isAuthenticated()">
+			      		<div sec:authorize="hasAuthority('ADMIN')">
+				      		<li class="nav-item">
+				        		<a class="nav-link" th:href="@{/allCommande}">Gestion des commandes</a>
+				      		</li>
+			      		</div>
+			      	</div>
 		    	</ul>
 		    	
 		    	<div class="form-inline my-2 my-lg-0">

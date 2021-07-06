@@ -1,6 +1,7 @@
 package com.ensup.myresto.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -75,5 +76,13 @@ public class CommandeController {
 		model.addAttribute("products", productService.getAllProducts());
 		
 		return "home";
+	}
+	
+	@GetMapping("/allCommande")
+	public String getAllCommands(Model model){
+		List<Command> commands = commandService.getAllCommands();
+		System.out.println(commands);
+		model.addAttribute("commandList", commands);
+		return "listeCommandes";
 	}
 }
