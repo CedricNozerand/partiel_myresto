@@ -17,4 +17,8 @@ public interface CommandService
 	public List<Command> sort(Set<Command> unsortedCommands);
 
 	List<Command> getAllCommands();
+
+	Command changeStatus(String status, Command command);
+
+	Command changeStatus(Command command);
 }

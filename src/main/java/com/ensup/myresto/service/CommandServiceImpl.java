@@ -95,6 +95,32 @@ public class CommandServiceImpl implements CommandService
 	@Override
 	public List<Command> getAllCommands()
 	{
-		return commandRepository.findAll();
+		List<Command> listCommandsPaidProcessClosed = new ArrayList<Command>();
+		for (Command command : commandRepository.findAll()) {
+			if(command.getStatus() == CommandStatus.Paid)
+				listCommandsPaidProcessClosed.add(command);
+			else if (command.getStatus() == CommandStatus.InProcess)
+				listCommandsPaidProcessClosed.add(command);
+			else if (command.getStatus() == CommandStatus.Closed)
+				listCommandsPaidProcessClosed.add(command);
+		}
+		return listCommandsPaidProcessClosed;
+	}
+	
+	@Override
+	public Command changeStatus(Command command) {
+		switch (command.getStatus().toString()) {
+		case "Paid":
+			command.setStatus(CommandStatus.InProcess);
+			break;
+		case "InProcess":
+			command.setStatus(CommandStatus.Closed);
+			break;
+
+		default:
+			break;
+		}
+		
+		return command;
 	}
 }

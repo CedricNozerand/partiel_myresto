@@ -31,9 +31,8 @@
 							<td th:text="${command.getPrice() + ' €'}"/>
 							<td>
 								<th:block th:switch="${command.status}">
-									<span th:case="${T(com.ensup.myresto.domaine.CommandStatus).Active}">En cours <button class="btn btn-success btn-sm ml-2">Terminée</button> </span> 
-									<span th:case="${T(com.ensup.myresto.domaine.CommandStatus).Paid}">Payée <button class="btn btn-info btn-sm">En cours de préparation</button> </span>
-									<span th:case="${T(com.ensup.myresto.domaine.CommandStatus).InProcess}">En cours <button class="btn btn-success btn-sm ml-2">Terminée</button> </span>
+									<span th:case="${T(com.ensup.myresto.domaine.CommandStatus).Paid}">Payée <button class="btn btn-info btn-sm"><a class="btn btn-success" th:href="@{/changeStatus/{id}(id=${command.id})}">En cours de préparation</a></button> </span>
+									<span th:case="${T(com.ensup.myresto.domaine.CommandStatus).InProcess}">En cours de préparation <button class="btn btn-success btn-sm ml-2">Terminée</button> </span>
 									<span th:case="${T(com.ensup.myresto.domaine.CommandStatus).Closed}">Términé</span>
 								</th:block>
 							</td>
@@ -41,9 +40,9 @@
 					</tbody>
 				</table>
 			</div>
-			<!-- <div th:if="${commands.isEmpty()}">
+			<div th:if="${commandList.isEmpty()}">
 				<span>Aucune commande.</span>
-			</div> -->
+			</div>
 		</div>
 	</div>
 </body>
