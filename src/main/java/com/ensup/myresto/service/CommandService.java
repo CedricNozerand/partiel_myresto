@@ -20,7 +20,8 @@ public interface CommandService
 	
 	List<Command> getAllCommands();
 
-	Command changeStatus(String status, Command command);
 
 	Command changeStatus(Command command);
+
+	
 }
