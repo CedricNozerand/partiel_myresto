@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -44,7 +46,10 @@ public class CommandeController {
 		//SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 		
 		// TODO : Get the actual current connected user
-		Command command = commandService.getActiveCommandOrCreateOne(userService.findByEmail("cedric.nozerand@gmail.com"));
+		
+		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+	    String email = loggedInUser.getName(); 
+		Command command = commandService.getActiveCommandOrCreateOne(userService.findByEmail(email));
 		
 		command.getProducts().add(product);
 		command.setDate(date);
@@ -62,7 +67,9 @@ public class CommandeController {
 	public String commande(Model model) {
 
 		// TODO : Get the actual current connected user
-		Command command = commandService.getActiveCommandOrCreateOne(userService.findByEmail("cedric.nozerand@gmail.com"));
+		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+	    String email = loggedInUser.getName(); 
+		Command command = commandService.getActiveCommandOrCreateOne(userService.findByEmail(email));
 		
 		model.addAttribute("command", command);
 		

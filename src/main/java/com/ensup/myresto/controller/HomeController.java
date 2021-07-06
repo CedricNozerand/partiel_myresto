@@ -1,6 +1,8 @@
 package com.ensup.myresto.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,12 @@ public class HomeController {
 		model.addAttribute("pizza_list", productRepository.findByType("PIZZA"));
 		model.addAttribute("dessert_list", productRepository.findByType("DESSERT"));
 		model.addAttribute("boisson_list", productRepository.findByType("BOISSON"));
+		
+		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+	    String email = loggedInUser.getName(); 
+
+	    System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeee"+email);
+	    
 		
 		return "home";
 	}
