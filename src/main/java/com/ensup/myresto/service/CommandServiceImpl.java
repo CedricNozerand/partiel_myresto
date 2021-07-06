@@ -109,16 +109,18 @@ public class CommandServiceImpl implements CommandService
 	
 	@Override
 	public Command changeStatus(Command command) {
-		switch (command.getStatus().toString()) {
-		case "Paid":
+		switch (command.getStatus())
+		{
+		case Paid:
 			command.setStatus(CommandStatus.InProcess);
 			break;
-		case "InProcess":
+			
+		case InProcess:
 			command.setStatus(CommandStatus.Closed);
 			break;
-
-		default:
-			break;
+			
+			default:
+				break;
 		}
 		
 		return command;
@@ -134,6 +136,6 @@ public class CommandServiceImpl implements CommandService
 	{
 		command.setStatus(status);
 
-		return null;
+		return command;
 	}
 }
