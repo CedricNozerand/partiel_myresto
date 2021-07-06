@@ -58,7 +58,9 @@ public class CommandeController {
 		
 		model.addAttribute("successMessage", "Le produit " + product.getName() + " a été ajouté à la commande.");
 		
-		model.addAttribute("products", productService.getAllProducts());
+		model.addAttribute("pizza_list", productService.findByType("PIZZA"));
+		model.addAttribute("dessert_list", productService.findByType("DESSERT"));
+		model.addAttribute("boisson_list", productService.findByType("BOISSON"));
 		
 		return "home";
 	}
