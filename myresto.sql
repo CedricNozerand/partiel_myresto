@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  sam. 03 juil. 2021 à 20:26
--- Version du serveur :  10.1.36-MariaDB
--- Version de PHP :  7.2.11
+-- Généré le : mar. 06 juil. 2021 à 10:30
+-- Version du serveur :  10.4.19-MariaDB
+-- Version de PHP : 7.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `myresto`
+-- Base de données : `myresto`
 --
 
 -- --------------------------------------------------------
@@ -42,7 +41,9 @@ CREATE TABLE `command` (
 INSERT INTO `command` (`id`, `date`, `status`, `user_id`) VALUES
 (1, '2021-07-03 16:30:58', 'Paid', 1),
 (2, '2021-07-03 17:05:52', 'Paid', 1),
-(3, '2021-07-03 18:25:00', 'Active', 1);
+(3, '2021-07-03 18:25:00', 'Paid', 1),
+(4, '2021-07-03 18:42:58', 'Paid', 1),
+(5, '2021-07-06 07:52:14', 'Paid', 1);
 
 -- --------------------------------------------------------
 
@@ -64,7 +65,11 @@ INSERT INTO `command_products` (`command_id`, `products_id`) VALUES
 (1, 2),
 (2, 1),
 (2, 3),
-(3, 1);
+(3, 1),
+(4, 4),
+(4, 4),
+(5, 1),
+(5, 2);
 
 -- --------------------------------------------------------
 
@@ -107,7 +112,8 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`id`, `name`) VALUES
-(1, 'MEMBER');
+(1, 'MEMBER'),
+(2, 'ADMIN');
 
 -- --------------------------------------------------------
 
@@ -130,7 +136,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `adress`, `email`, `first_name`, `last_name`, `password`, `phone_number`) VALUES
-(1, '11 Rue Gérard De Nerval', 'cedric.nozerand@gmail.com', 'Cédric', 'Nozerand', '$2y$07$EFdcjXaO6FVga8dB9nQlLehmVmyZ2WzLCw5lNsA2RMLh6I0jhTNL6', '0601293069');
+(1, '11 Rue Gérard De Nerval', 'cedric.nozerand@gmail.com', 'Cédric', 'Nozerand', '$2y$07$EFdcjXaO6FVga8dB9nQlLehmVmyZ2WzLCw5lNsA2RMLh6I0jhTNL6', '0601293069'),
+(2, 'voisins', 'admin@myResto.com', 'admin', 'admin', '$2y$07$EFdcjXaO6FVga8dB9nQlLehmVmyZ2WzLCw5lNsA2RMLh6I0jhTNL6', '0123589012');
 
 -- --------------------------------------------------------
 
@@ -148,7 +155,8 @@ CREATE TABLE `users_roles` (
 --
 
 INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES
-(1, 1);
+(1, 1),
+(2, 2);
 
 --
 -- Index pour les tables déchargées
@@ -203,7 +211,7 @@ ALTER TABLE `users_roles`
 -- AUTO_INCREMENT pour la table `command`
 --
 ALTER TABLE `command`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `product`
@@ -215,13 +223,13 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT pour la table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées
