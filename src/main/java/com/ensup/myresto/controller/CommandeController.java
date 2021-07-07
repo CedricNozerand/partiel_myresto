@@ -82,7 +82,9 @@ public class CommandeController {
 		
 		model.addAttribute("successMessage", "La commande n° " + command.getId() + " a bien été enregistrée.");
 		
-		model.addAttribute("products", productService.getAllProducts());
+		model.addAttribute("pizza_list", productService.findByType("PIZZA"));
+		model.addAttribute("dessert_list", productService.findByType("DESSERT"));
+		model.addAttribute("boisson_list", productService.findByType("BOISSON"));
 		
 		return "home";
 	}

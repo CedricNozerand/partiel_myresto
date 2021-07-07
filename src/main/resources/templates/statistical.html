@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head th:insert="fragments/fragments :: header"><meta charset="UTF-8"></head>
+	
+	<body>
+		<nav th:insert="fragments/fragments :: navbar"></nav>
+	
+		<div class="container">
+			
+			<h1 style="text-align: center">Statistiques</h1>
+			<hr style="margin-bottom: 50px">
+		
+			<h4 th:text="'Total des commandes de cette année: ' + ${totalCommand}"></h4>
+			<canvas id="command_graph" width="400" height="200"></canvas><br>
+			
+			<script th:inline="javascript">
+			
+			var January = "[[${January}]]";
+			var February = "[[${February}]]";
+			var March = "[[${March}]]";
+			var April = "[[${April}]]";
+			var May = "[[${May}]]";
+			var June = "[[${June}]]";
+			var July = "[[${July}]]";
+			var August = "[[${August}]]";
+			var September = "[[${September}]]";
+			var October = "[[${October}]]";
+			var November = "[[${November}]]";
+			var December = "[[${December}]]";
+			
+			var ctx = document.getElementById('command_graph').getContext('2d');
+			var myChart = new Chart(ctx, {
+			    type: 'bar',
+			    data: {
+			        labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+			        
+			        datasets: [{
+			            label: 'Nombre de commande par mois',
+			            data: [January, February, March, April, May, June, July, August, September, October, November, December],
+			            backgroundColor: [
+			                'rgba(182, 182, 182, 0.2)',
+			            ],
+			            borderColor: [
+			                'rgba(130, 130, 130, 1)',
+			            ],
+			            borderWidth: 1
+			        }]
+			    },
+			    options: {
+			        scales: {
+			            y: {
+			                beginAtZero: true
+			            }
+			        }
+			    }
+			});
+			</script>
+			
+		</div>
+	</body>
+	
+</html>
+
