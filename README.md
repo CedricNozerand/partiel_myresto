@@ -39,3 +39,7 @@ Par défaut, il y a un utilisateur admin dans la base de données. Ses identifia
 - Mot de passe : admin
 
 Pour se connecter en tant qu'utilisateur, il faut cliquer sur le bouton inscription sur la page d'accueil.
+
+# Hébergement
+
+Vous pouvez retrouver une version hébergée temporairement pour la durée du partiel [ici](http://88.167.139.70:8080/).
