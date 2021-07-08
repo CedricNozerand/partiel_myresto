@@ -13,6 +13,7 @@ import com.ensup.myresto.repository.ProductRepository;
 @Service
 public class ProductServiceImpl implements ProductService
 {
+	
 	@Autowired
 	private ProductRepository productRepository;
 	
@@ -21,6 +22,11 @@ public class ProductServiceImpl implements ProductService
 		return productRepository.findAll();
 	}
 
+	/**
+	 * Recupere un produit par son id
+	 * @param prend en parametre un id de type Long
+	 * @return retourne le produit trouvé
+	 */
 	@Override
 	public Product getProductByID(long id) {
 		Optional<Product> optional = productRepository.findById(id);
@@ -33,6 +39,11 @@ public class ProductServiceImpl implements ProductService
 		return product;
 	}
 
+	/**
+	 * Recupere un produit par son nom
+	 * @param prend en parametre un nom de type String
+	 * @return retourne le produit trouvé
+	 */
 	@Override
 	public Product getProductByName(String name) {
 		Product product = productRepository.findByName(name);
@@ -41,13 +52,23 @@ public class ProductServiceImpl implements ProductService
 		}
 		throw new RuntimeException("La product " + name + " est introuvable");
 	}
-
+	
+	/**
+	 * Recupere une liste de produits par type de produit
+	 * @param prend en parametre un type de produit de type String
+	 * @return retourne la liste des produits trouvés
+	 */
 	@Override
 	public List<Product> findByType(String type)
 	{
 		return productRepository.findByType(type);
 	}
 	
+	/**
+	 * Recupere la liste des produits d'une commande 
+	 * @param prend en parametre un id de la commande de type  Long
+	 * @return retourne la liste des produits trouvés
+	 */
 	@Override
 	public Set<Product> getAllProductCommand(Long id){
 		return productRepository.findAllProductByCommand(id);

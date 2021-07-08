@@ -15,6 +15,11 @@ import com.ensup.myresto.domaine.Product;
 import com.ensup.myresto.domaine.User;
 import com.ensup.myresto.repository.CommandRepository;
 
+/**
+ * Classe d'implémentation de l'interface CommandServicce
+ * @author fatim
+ *
+ */
 @Service
 public class CommandServiceImpl implements CommandService
 {
@@ -24,6 +29,11 @@ public class CommandServiceImpl implements CommandService
 	@Autowired
 	CommandRepository commandRepository;
 
+	/**
+	 * Recuper la commande active ou crée en une
+	 * @param prend en parametre un utilisateur
+	 * @return renvoie la commande
+	 */
 	@Override
 	public Command getActiveCommandOrCreateOne(User user)
 	{
@@ -54,7 +64,7 @@ public class CommandServiceImpl implements CommandService
 	}
 
 	/**
-	 * Elle permet d'ajouter une commande 
+	 * Ajoute une commande 
 	 * @param prend en parametre un objet de type Command
 	 * @return retourne la commande créer
 	 */
@@ -77,7 +87,7 @@ public class CommandServiceImpl implements CommandService
 	
 	
 	/**
-	 * Elle permet de trier les commandes par status
+	 * Trie les commandes par status
 	 * @param prend en parametre une liste de commande non triée
 	 */
 	@Override
@@ -112,7 +122,7 @@ public class CommandServiceImpl implements CommandService
 
 
 	/**
-	 * Elle permet de récuperer la liste de tous des commandes (payé,en cours,terminé)
+	 * Récupere la liste de tous des commandes (payé,en cours,terminé)
 	 *  pour l'administration
 	 *  @return renvoi la liste des commandes
 	 */
@@ -132,7 +142,7 @@ public class CommandServiceImpl implements CommandService
 	}
 	
 	/**
-	 * Elle permet de changer le status d'une commande pour l'administration
+	 * Change le status d'une commande pour l'administration
 	 * @param prend en parametre une commande
 	 * @return retourne la meme commande avec le status modifié en fonction du status précédant
 	 */
@@ -155,8 +165,5 @@ public class CommandServiceImpl implements CommandService
 		return commandRepository.save(command);
 	}
 
-//	@Override
-//	public List<Command> getAllCommandPerMonth(int month) {
-//		return commandRepository.getAllCommandPerMonth(month);
-//	}
+
 }

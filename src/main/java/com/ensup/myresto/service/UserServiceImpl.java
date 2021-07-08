@@ -30,6 +30,11 @@ public class UserServiceImpl implements UserService {
 		this.userRepository = userRepository;
 	}
 
+	/**
+	 * Enregistre un utilisateur de type membre
+	 * @param prend en parametre un userRegistrationDto
+	 * @return retourne l'utilisateur enregister
+	 */
 	@Override
 	public User save(UserRegistrationDto registrationDto) {
 		User user = new User(registrationDto.getFirstName(), 
@@ -42,6 +47,11 @@ public class UserServiceImpl implements UserService {
 		return userRepository.save(user);
 	}
 
+	/**
+	 * Récupere un utilisateur en fonction de son username
+	 * @param prend en parametre un username de type string
+	 * @return retourne un userDetails
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByEmail(username);
@@ -51,10 +61,20 @@ public class UserServiceImpl implements UserService {
 		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
 	}
 	
+	/**
+	 * Récupere les roles qu'un utilisateur a
+	 * @param roles
+	 * @return retourne une collection de role
+	 */
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 	}
 
+	/**
+	 * Récupere un utilisateur en fonction de son email
+	 * @param prend en paramétre  un email de type String
+	 * @return retrourne l'utilisateur trouvé
+	 */
 	@Override
 	public User findByEmail(String email)
 	{
