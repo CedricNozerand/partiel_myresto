@@ -2,6 +2,7 @@ package com.ensup.myresto.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,5 +46,10 @@ public class ProductServiceImpl implements ProductService
 	public List<Product> findByType(String type)
 	{
 		return productRepository.findByType(type);
+	}
+	
+	@Override
+	public Set<Product> getAllProductCommand(Long id){
+		return productRepository.findAllProductByCommand(id);
 	}
 }

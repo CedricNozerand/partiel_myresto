@@ -25,9 +25,6 @@ public class HomeController {
 		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
 	    String email = loggedInUser.getName(); 
 
-	    System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeee"+email);
-	    
-		
 		return "home";
 	}
 }

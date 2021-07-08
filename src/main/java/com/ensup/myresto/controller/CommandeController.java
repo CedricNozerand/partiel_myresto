@@ -1,6 +1,7 @@
 package com.ensup.myresto.controller;
 
 import java.util.Date;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
 
 import com.ensup.myresto.domaine.Command;
 import com.ensup.myresto.domaine.CommandStatus;
@@ -107,5 +109,11 @@ public class CommandeController {
 		commandService.changeStatus(commandFound);
 		model.addAttribute("commandList", commandService.getAllCommands());
 		return "listeCommandes";
+	}
+	
+	@GetMapping("/getAllProdutCommand/{id}")
+	public String getAllProduct(@PathVariable(name = "id") Long id, Model model){
+		model.addAttribute("detailCommand", productService.getAllProductCommand(id));
+		return "detailCommand";
 	}
 }
