@@ -41,16 +41,7 @@
 	
 		<hr>
 		<h1 style="text-align: center; margin-top: 50px">Commandes en cours</h1>
-
-		<form method="POST" th:action="@{/allCommand}">
-			<div class="form-group">
-				<select class="form-control" name="select_status">
-					<option value="Paid">Payée</option>
-					<option value="Active">En cours de livraison</option>
-				</select>
-			</div>
-			<input type="submit" class="btn btn-success" value="Afficher">
-		</form>
+		<hr>
 
 		<div class="row">
 			<div th:if="${!commandList.isEmpty()}">
