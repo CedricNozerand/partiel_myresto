@@ -18,6 +18,9 @@ import com.ensup.myresto.repository.CommandRepository;
 @Service
 public class CommandServiceImpl implements CommandService
 {
+	/**
+	 * Injection de la dépendance du repository
+	 */
 	@Autowired
 	CommandRepository commandRepository;
 
@@ -50,17 +53,33 @@ public class CommandServiceImpl implements CommandService
 		return commandRepository.save(command);
 	}
 
+	/**
+	 * Elle permet d'ajouter une commande 
+	 * @param prend en parametre un objet de type Command
+	 * @return retourne la commande créer
+	 */
+	@Override
 	public Command save(Command command)
 	{
 		return commandRepository.save(command);
 	}
-
+	
+	/**
+	 * Elle permet de rechercher une commande par son id
+	 * @param prend en parametre un id de type Long
+	 * @return retourne la commande trouvée
+	 */
 	@Override
 	public Command getCommandById(Long commandId)
 	{
 		return commandRepository.getById(commandId);
 	}
-
+	
+	
+	/**
+	 * Elle permet de trier les commandes par status
+	 * @param prend en parametre une liste de commande non triée
+	 */
 	@Override
 	public List<Command> sort(Set<Command> unsortedCommands)
 	{
@@ -92,6 +111,11 @@ public class CommandServiceImpl implements CommandService
 	}
 
 
+	/**
+	 * Elle permet de récuperer la liste de tous des commandes (payé,en cours,terminé)
+	 *  pour l'administration
+	 *  @return renvoi la liste des commandes
+	 */
 	@Override
 	public List<Command> getAllCommands()
 	{
@@ -107,6 +131,11 @@ public class CommandServiceImpl implements CommandService
 		return listCommandsPaidProcessClosed;
 	}
 	
+	/**
+	 * Elle permet de changer le status d'une commande pour l'administration
+	 * @param prend en parametre une commande
+	 * @return retourne la meme commande avec le status modifié en fonction du status précédant
+	 */
 	@Override
 	public Command changeStatus(Command command) {
 		switch (command.getStatus())
@@ -124,11 +153,6 @@ public class CommandServiceImpl implements CommandService
 		}
 		
 		return commandRepository.save(command);
-	}
-
-	@Override
-	public List<Command> getAllCommandsByStatut(String status) {
-		return commandRepository.getAllCommandByStatut(status);
 	}
 
 //	@Override

@@ -182,16 +182,5 @@ public class CommandServiceTests
 		Assert.assertEquals(command.getStatus(), CommandStatus.Closed);
 	}
 	
-	/**
-	 * Vérifie que la méthode getAllCommandByStatut() du CommandRepository est bien appelée.
-	 */
-	@Test
-	public void getAllCommandsByStatut()
-	{
-	    Mockito.when(commandRepository.getAllCommandByStatut(Mockito.anyString())).thenReturn(new ArrayList<Command>());
-		
-		commandService.getAllCommandsByStatut("test");
-		
-		verify(commandRepository, times(1)).getAllCommandByStatut(Mockito.anyString());
-	}
+	
 }
