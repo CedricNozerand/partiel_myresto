@@ -130,4 +130,9 @@ public class CommandServiceImpl implements CommandService
 	public List<Command> getAllCommandsByStatut(String status) {
 		return commandRepository.getAllCommandByStatut(status);
 	}
+
+//	@Override
+//	public List<Command> getAllCommandPerMonth(int month) {
+//		return commandRepository.getAllCommandPerMonth(month);
+//	}
 }
