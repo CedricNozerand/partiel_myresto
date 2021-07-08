@@ -29,7 +29,7 @@ public class CommandServiceImpl implements CommandService
 
 	/**
 	 * Recuper la commande active ou crée en une
-	 * @param prend en parametre un utilisateur
+	 * @param user :prend en parametre un utilisateur
 	 * @return renvoie la commande
 	 */
 	@Override
@@ -63,7 +63,7 @@ public class CommandServiceImpl implements CommandService
 
 	/**
 	 * Ajoute une commande 
-	 * @param prend en parametre un objet de type Command
+	 * @param command: prend en parametre un objet de type Command
 	 * @return retourne la commande créer
 	 */
 	@Override
@@ -74,7 +74,7 @@ public class CommandServiceImpl implements CommandService
 	
 	/**
 	 * Elle permet de rechercher une commande par son id
-	 * @param prend en parametre un id de type Long
+	 * @param commandId : prend en parametre un id de type Long
 	 * @return retourne la commande trouvée
 	 */
 	@Override
@@ -86,7 +86,7 @@ public class CommandServiceImpl implements CommandService
 	
 	/**
 	 * Trie les commandes par status
-	 * @param prend en parametre une liste de commande non triée
+	 * @param unsortedCommands : prend en parametre une liste de commande non triée
 	 */
 	@Override
 	public List<Command> sort(Set<Command> unsortedCommands)
@@ -141,7 +141,7 @@ public class CommandServiceImpl implements CommandService
 	
 	/**
 	 * Change le status d'une commande pour l'administration
-	 * @param prend en parametre une commande
+	 * @param command: prend en parametre une commande
 	 * @return retourne la meme commande avec le status modifié en fonction du status précédant
 	 */
 	@Override

@@ -1,0 +1,7 @@
+com.ensup.myresto
+com.ensup.myresto.configuration
+com.ensup.myresto.controller
+com.ensup.myresto.domaine
+com.ensup.myresto.repository
+com.ensup.myresto.service
+com.ensup.myresto.web.dto

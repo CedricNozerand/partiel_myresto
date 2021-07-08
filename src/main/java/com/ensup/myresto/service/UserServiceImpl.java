@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * Enregistre un utilisateur de type membre
-	 * @param prend en parametre un userRegistrationDto
+	 * @param registrationDto:  prend en parametre registrationDto
 	 * @return retourne l'utilisateur enregister
 	 */
 	@Override
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * Récupere un utilisateur en fonction de son username
-	 * @param prend en parametre un username de type string
+	 * @param username : prend en parametre un username de type string
 	 * @return retourne un userDetails
 	 */
 	@Override
@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * Récupere un utilisateur en fonction de son email
-	 * @param prend en paramétre  un email de type String
+	 * @param  email : prend en paramétre  un email de type String
 	 * @return retrourne l'utilisateur trouvé
 	 */
 	@Override

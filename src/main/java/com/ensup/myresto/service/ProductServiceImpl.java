@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService
 
 	/**
 	 * Recupere un produit par son id
-	 * @param prend en parametre un id de type Long
+	 * @param id : prend en parametre un id de type Long
 	 * @return retourne le produit trouvé
 	 */
 	@Override
@@ -41,7 +41,7 @@ public class ProductServiceImpl implements ProductService
 
 	/**
 	 * Recupere un produit par son nom
-	 * @param prend en parametre un nom de type String
+	 * @param name : prend en parametre un nom de type String
 	 * @return retourne le produit trouvé
 	 */
 	@Override
@@ -55,7 +55,7 @@ public class ProductServiceImpl implements ProductService
 	
 	/**
 	 * Recupere une liste de produits par type de produit
-	 * @param prend en parametre un type de produit de type String
+	 * @param type : prend en parametre un type de produit de type String
 	 * @return retourne la liste des produits trouvés
 	 */
 	@Override
@@ -66,7 +66,7 @@ public class ProductServiceImpl implements ProductService
 	
 	/**
 	 * Recupere la liste des produits d'une commande 
-	 * @param prend en parametre un id de la commande de type  Long
+	 * @param id : prend en parametre un id de la commande de type  Long
 	 * @return retourne la liste des produits trouvés
 	 */
 	@Override
