@@ -3,7 +3,6 @@ package com.ensup.myresto.controller;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.ensup.myresto.domaine.Command;
-import com.ensup.myresto.domaine.Product;
 import com.ensup.myresto.service.CommandService;
 
 @Controller
@@ -20,6 +18,11 @@ public class StatisticalController {
 	@Autowired
 	private CommandService commandService;
 	
+	/**
+	 * Affiche les statistiques de l'application
+	 * @param model
+	 * @return L'URL de la page statistical
+	 */
 	@GetMapping("/statistical")
 	public String showStatisticals(Model model) {
 		int currentYear = Calendar.getInstance().get(Calendar.YEAR);

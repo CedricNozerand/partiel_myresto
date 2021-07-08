@@ -17,21 +17,38 @@ public class UserRegistrationController {
 
 	private UserService userService;
 
+	/**
+	 * Constructeur
+	 * @param userService 
+	 */
 	public UserRegistrationController(UserService userService) {
 		super();
 		this.userService = userService;
 	}
 	
+	/**
+	 * Récupère l'objet UserRegistrationDto 
+	 * @return UserRegistrationDto
+	 */
 	@ModelAttribute("user")
 	public UserRegistrationDto userRegistrationDto() {
 		return new UserRegistrationDto();
 	}
 	
+	/**
+	 * Affiche la page de création de compte
+	 * @return L'URL de la page registration
+	 */
 	@GetMapping
 	public String showRegistrationForm() {
 		return "registration";
 	}
 	
+	/**
+	 * Enregistre un utilisateur en base de données
+	 * @param registrationDto: Objet qui représente un enregistrement
+	 * @return L'URL de la page registration
+	 */
 	@PostMapping
 	public String registrationUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
 		

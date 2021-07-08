@@ -15,6 +15,11 @@ public class HomeController {
 	@Autowired
 	private ProductRepository productRepository;
 	
+	/**
+	 * Affiche la page d'accueil
+	 * @param model
+	 * @return L'URL de la page home
+	 */
 	@RequestMapping(value={"", "/", "/home"})
 	public String home(Model model) {
 		
