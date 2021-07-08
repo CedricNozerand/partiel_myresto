@@ -23,9 +23,7 @@ import com.ensup.myresto.repository.CommandRepository;
 @Service
 public class CommandServiceImpl implements CommandService
 {
-	/**
-	 * Injection de la dépendance du repository
-	 */
+	
 	@Autowired
 	CommandRepository commandRepository;
 
