@@ -1,6 +1,7 @@
 package com.ensup.myresto.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.ensup.myresto.domaine.Product;
 
@@ -13,4 +14,6 @@ public interface ProductService
 	Product getProductByName(String name);
 	
 	List<Product> findByType(String type);
+
+	Set<Product> getAllProductCommand(Long id);
 }

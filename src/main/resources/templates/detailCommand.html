@@ -8,9 +8,9 @@
 		<div class="container">
 			<h1 style="text-align: center">Votre commande en cours</h1>
         	
-        	<div th:if="${!command.products.isEmpty()}">
+        	<div th:if="${!detailCommand.isEmpty()}">
 	        	<div class="row" style="margin-bottom: 50px">
-	        		<div class="col-3" th:each="product : ${command.products}" style="margin-bottom: 20px">
+	        		<div class="col-3" th:each="product : ${detailCommand}" style="margin-bottom: 20px">
 	        			<div class="card card-shadow h-100">
 	        				<img class="card-img-top" th:attr="src=${product.image}" alt="Card image cap">
 	        				<div class="card-body">
@@ -25,33 +25,16 @@
 	        						<p class="card-text" th:text="${product.price + '€'}"></p>
 	        					</div>
 	        				</div>
-	        				<div class="card-footer row" style="margin: 0px">
-	        					<div class="col-6">
-	        						<span>Quantité</span>
-	        					</div>
-	        					<div class="col-6">
-	        						<select >
-									    <option th:each="i : ${#numbers.sequence(0, 10)}" th:value="${i}" th:text="${i}" 
-									      th:selected="${i==1}"></option>
-									</select>
-	        					</div>
-	        				</div>
+	        	
 	        				
 	        			</div>
 	        		</div>
 	        	</div>
 	        	
-	        	<div class="card shadow">
-	        		<div class="card-body">
-	        			<span th:text="${'Total de la commande: ' + command.getPrice() + ' €'}"></span><br>
-	        		</div>
-	        		<div class="card-footer">
-	       				<a th:href="@{/validateCommand/{commandId}(commandId=${command.id})}" class="btn btn-primary">Valider</a>
-	       			</div>
-	        	</div>
+	        	
 	        	
         	</div>
-        	<div th:if="${command.products.isEmpty()}">
+        	<div th:if="${detailCommand.isEmpty()}">
        			<span>Aucun produit dans cette commande.</span>
        		</div>
         	
