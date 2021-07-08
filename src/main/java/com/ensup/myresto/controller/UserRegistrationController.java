@@ -1,5 +1,7 @@
 package com.ensup.myresto.controller;
 
+import java.util.regex.Pattern;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,7 +34,19 @@ public class UserRegistrationController {
 	
 	@PostMapping
 	public String registrationUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
-		userService.save(registrationDto);
-		return "redirect:/?success";
+		
+		if(Pattern.matches("[a-zA-Z]+", registrationDto.getFirstName())) {
+			if(Pattern.matches("[a-zA-Z]+", registrationDto.getLastName())) {
+				if(Pattern.matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}", registrationDto.getEmail())) {
+					if(Pattern.matches("[0-9]{10}", registrationDto.getPhoneNumber())) {
+						if(registrationDto.getPassword().equals(registrationDto.getPasswordConfirmation())) {
+							userService.save(registrationDto);
+							return "redirect:/?success";
+						}
+					}
+				}
+			}
+		}
+		return "/registration";
 	}
 }
