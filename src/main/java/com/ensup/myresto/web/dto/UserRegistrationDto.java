@@ -8,12 +8,13 @@ public class UserRegistrationDto {
 	private String adress;
 	private String phoneNumber;
 	private String password;
+	private String passwordConfirmation;
 	
 	public UserRegistrationDto() {
 		
 	}
 	
-	public UserRegistrationDto(String firstName, String lastName, String email, String adress, String phoneNumber, String password) {
+	public UserRegistrationDto(String firstName, String lastName, String email, String adress, String phoneNumber, String password, String passwordConfirmation) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -21,6 +22,7 @@ public class UserRegistrationDto {
 		this.adress = adress;
 		this.phoneNumber = phoneNumber;
 		this.password = password;
+		this.passwordConfirmation = passwordConfirmation;
 	}
 	
 	public String getFirstName() {
@@ -58,5 +60,11 @@ public class UserRegistrationDto {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getPasswordConfirmation() {
+		return passwordConfirmation;
+	}
+	public void setPasswordConfirmation(String passwordConfirmation) {
+		this.passwordConfirmation = passwordConfirmation;
 	}
 }

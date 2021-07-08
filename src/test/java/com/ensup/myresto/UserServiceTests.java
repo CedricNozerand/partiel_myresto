@@ -39,7 +39,7 @@ public class UserServiceTests
 	@Test
 	public void save()
 	{
-		UserRegistrationDto userRegistrationDto = new UserRegistrationDto("test name", "", "", "", "", "");
+		UserRegistrationDto userRegistrationDto = new UserRegistrationDto("test name", "", "", "", "", "", "");
 		
 	    Mockito.when(userRepository.save(Mockito.any(User.class))).thenReturn(new User());
 		

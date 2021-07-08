@@ -24,6 +24,11 @@ public class HistoryController {
 	@Autowired
 	private CommandService commandService;
 
+	/**
+	 * Affiche l'historique des commandes de l'utilisateur qui est connecté
+	 * @param model
+	 * @return L'URL de la page historique
+	 */
 	@GetMapping("/historique")
 	public String showHistory(Model model) {
 
@@ -40,6 +45,11 @@ public class HistoryController {
 		return "historique";
 	}
 	
+	/**
+	 * Affiche l'historique de toutes les commandes enregistrées en base de données
+	 * @param model
+	 * @return L'URL de la page allHistorique
+	 */
 	@GetMapping("/allHistorique")
 	public String showAllHistory(Model model) {
 		

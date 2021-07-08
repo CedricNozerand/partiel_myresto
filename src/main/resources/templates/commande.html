@@ -25,18 +25,6 @@
 	        						<p class="card-text" th:text="${product.price + '€'}"></p>
 	        					</div>
 	        				</div>
-	        				<div class="card-footer row" style="margin: 0px">
-	        					<div class="col-6">
-	        						<span>Quantité</span>
-	        					</div>
-	        					<div class="col-6">
-	        						<select >
-									    <option th:each="i : ${#numbers.sequence(0, 10)}" th:value="${i}" th:text="${i}" 
-									      th:selected="${i==1}"></option>
-									</select>
-	        					</div>
-	        				</div>
-	        				
 	        			</div>
 	        		</div>
 	        	</div>

@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/", "/home", "/css/**", "/js/**", "/assets/**", "/registration").permitAll()
 			.antMatchers("/administrator").hasAuthority("ADMIN")
 			.antMatchers("/commande").hasAnyAuthority("MEMBER", "ADMIN")
-			.antMatchers("/historic").hasAnyAuthority("MEMBER", "ADMIN")
+			.antMatchers("/historique").hasAnyAuthority("MEMBER", "ADMIN")
 			.anyRequest().authenticated()
 			.and()
 			.exceptionHandling().accessDeniedPage("/403")

@@ -41,16 +41,7 @@
 	
 		<hr>
 		<h1 style="text-align: center; margin-top: 50px">Commandes en cours</h1>
-
-		<form method="POST" th:action="@{/allCommand}">
-			<div class="form-group">
-				<select class="form-control" name="select_status">
-					<option value="Paid">Payée</option>
-					<option value="Active">En cours de livraison</option>
-				</select>
-			</div>
-			<input type="submit" class="btn btn-success" value="Afficher">
-		</form>
+		<hr>
 
 		<div class="row">
 			<div th:if="${!commandList.isEmpty()}">
@@ -72,8 +63,8 @@
 							<td th:text="${command.getPrice() + ' €'}"/>
 							<td>
 								<th:block th:switch="${command.status}">
-									<span th:case="${T(com.ensup.myresto.domaine.CommandStatus).Paid}">Payée <button class="btn btn-info btn-sm"><a class="btn btn-success" th:href="@{/changeStatus/{id}(id=${command.id})}">En cours de préparation</a></button> </span>
-									<span th:case="${T(com.ensup.myresto.domaine.CommandStatus).InProcess}">En cours de préparation <button class="btn btn-success btn-sm ml-2"><a class="btn btn-success" th:href="@{/changeStatus/{id}(id=${command.id})}">Terminée</a></button> </span>
+									<span th:case="${T(com.ensup.myresto.domaine.CommandStatus).Paid}">Payée <a class="btn btn-success" th:href="@{/changeStatus/{id}(id=${command.id})}">En cours de préparation</a> </span>
+									<span th:case="${T(com.ensup.myresto.domaine.CommandStatus).InProcess}">En cours de préparation <a class="btn btn-success" th:href="@{/changeStatus/{id}(id=${command.id})}">Terminée</a> </span>
 									<span th:case="${T(com.ensup.myresto.domaine.CommandStatus).Closed}">Términé</span>
 								</th:block>
 							</td>
